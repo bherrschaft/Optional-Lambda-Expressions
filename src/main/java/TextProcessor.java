@@ -5,19 +5,19 @@ import java.util.stream.*;
 
 public class TextProcessor {
     public static void main(String[] args) {
-        // Correctly specify the path to the input file
-        String inputFilePath = "C:\\Users\\admin\\Optional-Lambda-Expressions\\src\\main\\java\\input.txt";
-        String outputFilePath = "C:\\Users\\admin\\Optional-Lambda-Expressions\\src\\main\\java\\sorted_words.txt";
+        // Use relative paths for input and output files
+        String inputFilePath = "src/main/java/input.txt";
+        String outputFilePath = "src/main/java/sorted_words.txt";
 
         try {
-            // Check if the file exists
-            File inputFile = new File(inputFilePath);
-            if (!inputFile.exists()) {
+            // Check if the input file exists
+            Path inputPath = Paths.get(inputFilePath);
+            if (!Files.exists(inputPath)) {
                 throw new FileNotFoundException("The file " + inputFilePath + " does not exist.");
             }
 
             // Read all lines from the input file
-            List<String> lines = Files.readAllLines(Paths.get(inputFilePath));
+            List<String> lines = Files.readAllLines(inputPath);
             if (lines.isEmpty()) {
                 System.out.println("The file is empty.");
                 return;
